@@ -11,7 +11,7 @@ from rich.text import Text
 
 from sset import SSet
 
-FILENAME = "small-words.txt"
+FILENAME = "words.txt"
 
 # Messages for footer
 LOADING = Text.from_markup("Loading dictionary...")
@@ -51,6 +51,8 @@ class SearcherApp(App):
     async def on_ready(self) -> None:
         """Called when app is ready"""
         self.sset.load()
+
+        print(len(self.sset.root.children))
         self.query_one("#results", RichLog).loading = False
         self.query_one(Label).update(footer_markup(0))
 
